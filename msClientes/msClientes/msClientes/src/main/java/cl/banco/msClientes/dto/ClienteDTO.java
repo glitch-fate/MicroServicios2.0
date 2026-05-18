@@ -12,5 +12,6 @@ public class ClienteDTO {
     private Integer id;
     private String nombre;
     private String apellido;
+    private String rut;
 
 }

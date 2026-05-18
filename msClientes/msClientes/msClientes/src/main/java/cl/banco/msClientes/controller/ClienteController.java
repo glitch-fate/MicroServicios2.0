@@ -35,8 +35,18 @@ public class ClienteController {
     }
 
     @GetMapping("/rut/{rut}")
-    public Cliente buscarRut(@PathVariable String rut) {
-        return service.buscarPorRut(rut);
+    public ResponseEntity<ClienteDTO> buscarRut(@PathVariable String rut) {
+    
+        Cliente cliente = service.buscarPorRut(rut);
+    
+        ClienteDTO dto = new ClienteDTO(
+        cliente.getId(),
+        cliente.getNombre(),
+        cliente.getApellido(),
+        cliente.getRut()
+    );
+    
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
@@ -64,10 +74,13 @@ public class ClienteController {
     ClienteDTO dto = new ClienteDTO(
         cliente.getId(),
         cliente.getNombre(),
-        cliente.getApellido()
+        cliente.getApellido(),
+        cliente.getRut()
     );
     return ResponseEntity.ok(dto);
     
    
-}
+    }
+
+    
 }

@@ -16,20 +16,19 @@ public class TarjetasDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (tarjetaRepository.count() == 0) {
-            System.out.println("Inicializando datos de tarjetas de prueba...");
-            
+                       
             
             Tarjetas t1 = new Tarjetas();
-            t1.setRutCliente("16145789-6");
-            t1.setTipoTarjeta("DEBITO");
+            t1.setRutCliente("15987123-5");
+            t1.setTipoTarjeta("VISA_BLACK");
             t1.setNumeroTarjeta("4556123487650001");
-            t1.setCupoTotal(0.0);
-            t1.setCupoDisponible(0.0);
+            t1.setCupoTotal(1500000.0);
+            t1.setCupoDisponible(990000.0);
             t1.setEstado("ACTIVA");
             t1.setAprobadoPor("Sistema");
             
             tarjetaRepository.save(t1);
-            System.out.println("Datos iniciales cargados con éxito.");
+            System.out.println("Datos cargados con exito");
         }
     }
 

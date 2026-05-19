@@ -24,13 +24,6 @@ public class HorariosEmpleadoController {
     @Autowired
     private HorarioEmpleadoService service;
 
-    //agregar un nuevo día de horario
-    /*@PostMapping
-    public ResponseEntity<HorariosEmpleado> nuevoHorario(@RequestBody HorariosEmpleado horario) {
-    // Al quitar el try-catch, si algo falla, la consola te gritará la verdad
-    HorariosEmpleado guardado = service.guardarHorario(horario);
-    return ResponseEntity.ok(guardado); */
-
 
     @PostMapping
     public ResponseEntity<HorariosEmpleado> nuevoHorario(@RequestBody HorariosEmpleado horario) {
@@ -42,23 +35,13 @@ public class HorariosEmpleadoController {
         }
     }
 
-    // obtener la agenda del ejecutivo con su nombre desde msEmpleados
      @GetMapping("/empleado/{empleadoId}")
     public ResponseEntity<List<HorariosEmpleado>> obtenerHorariosPorEmpleado(@PathVariable Integer empleadoId) {
      List<HorariosEmpleado> horarios = service.buscarPorEmpleado(empleadoId);
      return ResponseEntity.ok(horarios);
 }
 
-    //desactivar un día específico pasando el id del registro y el motivo por parámetro
-    /*@PutMapping("/{id}/desactivar")
-    public ResponseEntity<HorariosEmpleado> desactivarHorario(@PathVariable Integer id, @RequestParam String motivo) {
-        try {
-            HorariosEmpleado modificado = service.desactivarPorLicencia(id, motivo);
-            return ResponseEntity.ok(modificado);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
+
 
     @PutMapping("/{id}/desactivar")
     public ResponseEntity<HorariosEmpleado> desactivarHorario(@PathVariable Integer id, @RequestParam String motivo) {
@@ -67,7 +50,7 @@ public class HorariosEmpleadoController {
         return ResponseEntity.ok(modificado);
         } catch (Exception e) {
        
-            e.printStackTrace(); // esto me ayuda a saber que salio mal en consola
+            e.printStackTrace(); 
         
         return ResponseEntity.badRequest().build();
         }

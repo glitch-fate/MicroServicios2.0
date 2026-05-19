@@ -109,28 +109,25 @@ public Citas guardarCita(Citas cita) {
         DetalleCitaDTO detalle = new DetalleCitaDTO();
         detalle.setId(cita.getId());
         detalle.setFechaCita(cita.getFechaCita());
-        detalle.setHoraCita(cita.getHora());;
+        detalle.setHoraCita(cita.getHora()); 
 
-       
+      
         try {
             if (cita.getClienteId() != null) {
                 ClienteDTO cliente = clienteClient.obtenerClienteDTO(cita.getClienteId());
                 detalle.setCliente(cliente);
             }
         } catch (Exception e) {
-            System.out.println("No se pudo obtener el cliente: " + e.getMessage());
+            System.out.println("No se pudo obtener el cliente para la cita ID " + cita.getId() + ": " + e.getMessage());
         }
 
-        
         try {
-            
             if (cita.getEjecutivoId() != null) { 
                 EjecutivosDTO ejecutivo = empleadosClient.obtenerEjecutivosDTO(cita.getEjecutivoId());
-                detalle.setEjecutivos(ejecutivo);// Lo guardamos en el DTO
+                detalle.setEjecutivos(ejecutivo);
             }
         } catch (Exception e) {
-            
-            System.out.println("No se pudo obtener el ejecutivo: " + e.getMessage());
+            System.out.println("No se pudo obtener el ejecutivo para la cita ID " + cita.getId() + ": " + e.getMessage());
         }
 
        
@@ -139,12 +136,14 @@ public Citas guardarCita(Citas cita) {
             tipoDTO.setId(cita.getTipoCitas().getId());
             tipoDTO.setNombre(cita.getTipoCitas().getNombre());
             detalle.setTipoCitas(tipoDTO);
+            
+         
+            detalle.setMotivoCita(cita.getTipoCitas().getNombre()); 
         }
 
         return detalle;
     }).collect(Collectors.toList());
 }
-
     
 }
 

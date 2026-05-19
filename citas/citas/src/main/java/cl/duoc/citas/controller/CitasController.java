@@ -27,15 +27,12 @@ public class CitasController {
 
 
     @PostMapping
-public ResponseEntity<Citas> nuevaCita(@RequestBody Citas cita) {
-    try {
+    public ResponseEntity<Citas> nuevaCita(@RequestBody Citas cita) {
+     try {
         Citas citaGuardada = service.guardarCita(cita);
-        // Retornamos la cita guardada en vez de .build() para ver el JSON en Postman
         return ResponseEntity.ok(citaGuardada); 
-    } catch (Exception e) {
-        // ¡ESTA LÍNEA ES CLAVE! Imprime el error real en tu consola de VS Code
+     } catch (Exception e) {
         e.printStackTrace(); 
-        
         return ResponseEntity.badRequest().build();
     }
 }
@@ -52,9 +49,8 @@ public ResponseEntity<Citas> nuevaCita(@RequestBody Citas cita) {
     
 
     @GetMapping
-public ResponseEntity<List<DetalleCitaDTO>> listarCitas(){
-    // Llamamos al método del servicio que arma la lista combinada
-    List<DetalleCitaDTO> listaConDetalles = service.listaCitasConDetalle();
+    public ResponseEntity<List<DetalleCitaDTO>> listarCitas(){
+        List<DetalleCitaDTO> listaConDetalles = service.listaCitasConDetalle();
 
     if(listaConDetalles.isEmpty()){
         return ResponseEntity.noContent().build();

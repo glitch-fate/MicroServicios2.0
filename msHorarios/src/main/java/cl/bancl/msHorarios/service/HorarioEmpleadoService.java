@@ -90,7 +90,7 @@ public List<HorariosEmpleado> buscarPorEmpleado(Integer empleadoId) {
         try {        
             EjecutivosDTO empleadoDto = empleadoClient.obtenerEjecutivosDTO(empleadoId);
                       
-            String nombreReal = empleadoDto.getNombre() + " " + empleadoDto.getApellido();
+            String nombreReal = empleadoDto.getNombre();
                        
             horarios.forEach(horario -> horario.setNombreEmpleado(nombreReal));
             

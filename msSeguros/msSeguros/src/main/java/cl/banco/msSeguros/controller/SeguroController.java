@@ -23,23 +23,19 @@ public class SeguroController {
     @Autowired
     private SeguroService seguroService;
 
-    // 1. Contratar un seguro
     @PostMapping
     public ResponseEntity<Seguro> crearSeguro(@RequestBody Seguro seguro) {
         return ResponseEntity.ok(seguroService.crearSeguro(seguro));
     }
 
-    // 2. Obtener todos los seguros
     
     @GetMapping
     public ResponseEntity<List<SeguroRespuestaDTO>> obtenerTodos() {
         return ResponseEntity.ok(seguroService.obtenerTodos());
     }
     
-    // 3. Buscar seguro por su ID
     @GetMapping("/{id}")
     public ResponseEntity<SeguroRespuestaDTO> obtenerPorId(@PathVariable Long id) {
-    // Llamamos al método correcto que usa Feign y llena el ClienteDTO dentro del DTO de respuesta
     SeguroRespuestaDTO respuesta = seguroService.obtenerPorId(id);
     
     if (respuesta != null) {
@@ -48,17 +44,11 @@ public class SeguroController {
     return ResponseEntity.notFound().build();
 }
     
-
-    
-    
-
-    // 4. Buscar seguros de un cliente específico (¡Ideal para tu ecosistema!)
     @GetMapping("/cliente/{clienteId}")
     public ResponseEntity<List<Seguro>> obtenerPorCliente(@PathVariable Long clienteId) {
         return ResponseEntity.ok(seguroService.obtenerPorCliente(clienteId));
     }
 
-    // 5. Cancelar un seguro (Baja lógica)
     @PutMapping("/{id}/cancelar")
     public ResponseEntity<Seguro> cancelarSeguro(@PathVariable Long id) {
         Seguro seguroCancelado = seguroService.cancelarSeguro(id);

@@ -24,25 +24,25 @@ public class SeguroService {
     private ClienteClient clienteClient;
 
    
-  // Crear seguro
+
     public Seguro crearSeguro(Seguro seguro) {
         seguro.setFechaContratacion(java.time.LocalDate.now());
         seguro.setEstado("ACTIVO");
         return seguroRepository.save(seguro);
     }
 
-    // Listar todos 
+    
     public List<SeguroRespuestaDTO> obtenerTodos() {
         List<Seguro> seguros = seguroRepository.findAll();
         List<SeguroRespuestaDTO> respuesta = new ArrayList<>();
 
         for (Seguro s : seguros) {
-            respuesta.add(mapearADTO(s)); // Llama al método de abajo sin guion bajo
+            respuesta.add(mapearADTO(s)); 
         }
         return respuesta;
     }
 
-    // Buscar por ID
+  
     public SeguroRespuestaDTO obtenerPorId(Long id) {
         Optional<Seguro> opcional = seguroRepository.findById(id);
         if (opcional.isPresent()) {
@@ -51,12 +51,11 @@ public class SeguroService {
         return null;
     }
 
-    // Listar por cliente
     public List<Seguro> obtenerPorCliente(Long clienteId) {
         return seguroRepository.findByClienteId(clienteId);
     }
 
-    // Cancelar seguro
+   
     public Seguro cancelarSeguro(Long id) {
         Optional<Seguro> opcional = seguroRepository.findById(id);
         if (opcional.isPresent()) {
@@ -67,7 +66,7 @@ public class SeguroService {
         return null;
     }
 
-    // El método que junta todo (Asegúrate de que se llame igual que en el ciclo for)
+    
     private SeguroRespuestaDTO mapearADTO(Seguro seguro) {
         SeguroRespuestaDTO dto = new SeguroRespuestaDTO();
         dto.setId(seguro.getId());

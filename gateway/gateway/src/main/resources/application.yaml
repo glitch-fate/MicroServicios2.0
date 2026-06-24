@@ -1,0 +1,77 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # Ruta para msclientes (la que ya tenías)
+        - id: msclientes
+          uri: lb://MSCLIENTES
+          predicates:
+            - Path=/api/clientes/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        
+        # Nueva ruta para citas
+        - id: citas
+          uri: lb://CITAS
+          predicates:
+            - Path=/api/citas/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: mscaja
+          uri: lb://MSCAJA
+          predicates:
+            - Path=/api/caja/**
+          filters:
+            - StripPrefix=0
+          order: 1        
+        - id: mscreditos
+          uri: lb://MSCREDITOS
+          predicates:
+            - Path=/api/creditos/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: msempleados
+          uri: lb://MSEMPLEADOS
+          predicates:
+            - Path=/api/ejecutivos/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: mshorarios
+          uri: lb://MSHORARIOS
+          predicates:
+            - Path=/api/horarios/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: msseguros
+          uri: lb://MSSEGUROS
+          predicates:
+            - Path=/api/seguro/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: mssolicitudes
+          uri: lb://MSSOLICITUDES
+          predicates:
+            - Path=/api/solicitudes/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: mstarjetas
+          uri: lb://MSTARJETAS
+          predicates:
+            - Path=/api/tarjetas/**
+          filters:
+            - StripPrefix=0
+          order: 1
+        - id: msdashboard
+          uri: lb://MSDASHBOARD
+          predicates:
+            - Path=/api/dashboard/**
+          filters:
+            - StripPrefix=0
+          order: 1

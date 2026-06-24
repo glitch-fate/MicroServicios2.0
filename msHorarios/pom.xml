@@ -10,8 +10,8 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>cl.banco</groupId>
-	<artifactId>msEmpleados</artifactId>
+	<groupId>cl.bancl</groupId>
+	<artifactId>msHorarios</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
@@ -19,7 +19,7 @@
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
 
-	<!-- SPRING CLOUD (NECESARIO PARA EUREKA) -->
+	<!-- SPRING CLOUD -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -44,6 +44,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- OpenFeign -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
 		<!-- MySQL -->

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: msHorarios
+  datasource:
+    url: jdbc:mysql://localhost:3306/horarioempleado_db
+    username: root
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+server:
+  port: 8085
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

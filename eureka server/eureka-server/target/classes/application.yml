@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false # No se registra a sí mismo
+    fetch-registry: false       # No busca otros registros
+  instance:
+    hostname: localhost
+    prefer-ip-address: true     # Fundamental para que otros MS lo encuentren por IP
+  server:
+    # Evita que el servidor entre en "modo de emergencia" innecesariamente
+    enable-self-preservation: false 
+    # Tiempo de espera para considerar que un servicio está caído (en milisegundos)
+    eviction-interval-timer-in-ms: 30000
+
+# Añadimos Actuator para monitorear el estado de Eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
